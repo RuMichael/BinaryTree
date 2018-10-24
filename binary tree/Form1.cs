@@ -16,11 +16,13 @@ namespace binary_tree
         {
             InitializeComponent();
             label2.Text = "С клавиатуры: \n\nEnter - добавить \nDelete - удалить \nSpace - обновить";
+            Error.ForeColor = Color.Red;
+            Error.Text = "Напиши число =)";
         }
 
         BinaryTree tree = new BinaryTree();
 
-        private void add_Click(object sender, EventArgs e)
+        private void add_Click(object sender, EventArgs e)  //Кнопка Добавить, добавляет в дерево элемент со значением из ТекстБокс
         {
             if (Value.Text != "")
                 tree.Add(int.Parse(Value.Text));
@@ -28,7 +30,7 @@ namespace binary_tree
             Value.Focus();
         }
 
-        private void del_Click(object sender, EventArgs e)
+        private void del_Click(object sender, EventArgs e)  //Кнопка Удалить, удаляет элемент в дереве со значению из ТекстБокс
         {
             if (Value.Text != "")
                 tree.Delete(int.Parse(Value.Text));
@@ -36,7 +38,7 @@ namespace binary_tree
             Value.Focus();
         }
 
-        private void print_Click(object sender, EventArgs e)
+        private void print_Click(object sender, EventArgs e)    //Кнопка Обновить, отрисовывает на форме наше дерево
         {
             Refresh();
 
@@ -57,6 +59,8 @@ namespace binary_tree
             Value.Focus();
         }
 
+        #region // пытаемся уберечь пользователя от ошибок в форме
+
         private void Value_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -69,16 +73,38 @@ namespace binary_tree
                     break;
                 case Keys.Space:
                     print_Click(sender, e);
-                    break;
+                    break;                
             }
         }
 
-        private void Value_KeyPress(object sender, KeyPressEventArgs e)
+        public void Value_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (Char.IsDigit(e.KeyChar))
-                return;
-            else
-                e.Handled = true;            
+            if (Char.IsDigit(e.KeyChar) || Char.IsControl(e.KeyChar))            
+                    return;
+            else            
+                e.Handled = true;
+            
         }
+
+        private void Value_KeyUp(object sender, KeyEventArgs e)
+        {
+            int tmp;
+            if (!int.TryParse(Value.Text, out tmp))
+            {
+                if (Value.Text.Length == 0)
+                    Error.Text = "Напиши число =)";
+                else
+                    Error.Text = "Слишком большое число!";
+                add.Enabled = false;
+                del.Enabled = false;
+            }
+            else
+            {
+                Error.Text = "";
+                add.Enabled = true;
+                del.Enabled = true;
+            }
+        }
+        #endregion
     }
 }

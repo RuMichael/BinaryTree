@@ -81,7 +81,7 @@ namespace binary_tree
         public void Delete(int key)
         {
             Element tmp;
-            if (head.Value == key)
+            if (head!=null && head.Value == key)
             {
                 if (head.Left == null)
                     head = head.Right;

@@ -30,12 +30,13 @@
         {
             this.Tablo = new System.Windows.Forms.GroupBox();
             this.panel = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.print = new System.Windows.Forms.Button();
             this.del = new System.Windows.Forms.Button();
             this.add = new System.Windows.Forms.Button();
             this.Value = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.Error = new System.Windows.Forms.Label();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +55,7 @@
             // 
             this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel.Controls.Add(this.Error);
             this.panel.Controls.Add(this.label2);
             this.panel.Controls.Add(this.label1);
             this.panel.Controls.Add(this.print);
@@ -65,6 +67,15 @@
             this.panel.Size = new System.Drawing.Size(173, 436);
             this.panel.TabIndex = 4;
             this.panel.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 224);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Колескин";
             // 
             // label1
             // 
@@ -114,15 +125,16 @@
             this.Value.TabIndex = 0;
             this.Value.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Value_KeyDown);
             this.Value.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Value_KeyPress);
+            this.Value.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Value_KeyUp);
             // 
-            // label2
+            // Error
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 224);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Колескин";
+            this.Error.AutoSize = true;
+            this.Error.Location = new System.Drawing.Point(20, 303);
+            this.Error.Name = "Error";
+            this.Error.Size = new System.Drawing.Size(47, 13);
+            this.Error.TabIndex = 6;
+            this.Error.Text = "Ошибка";
             // 
             // Form1
             // 
@@ -149,6 +161,7 @@
         private System.Windows.Forms.Button add;
         private System.Windows.Forms.TextBox Value;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Error;
     }
 }
 
