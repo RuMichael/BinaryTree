@@ -66,10 +66,11 @@ namespace binary_tree
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    add_Click(sender, e);
+
+                    if (int.TryParse(Value.Text, out int x)) add_Click(sender, e);
                     break;
                 case Keys.Delete:
-                    del_Click(sender, e);
+                    if (int.TryParse(Value.Text, out int y)) del_Click(sender, e);
                     break;
                 case Keys.Space:
                     print_Click(sender, e);
